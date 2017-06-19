@@ -1,0 +1,32 @@
+- name: Install prerequisite software
+  apt:
+    update_cache: yes
+    name:
+      - avahi-daemon
+      - cups
+      - cups-pdf
+      - python-cups
+    state: present
+  become: true
+  tags: apt,cups,airprint
+
+- name: Adding user '{{ cups_admin_user }}' to group lpadmin
+  user:
+    name: "{{ cups_admin_user }}"
+    groups: lpadmin
+    append: true
+  become: true
+  tags: cups,airprint
+
+- name: Configure CUPS
+  copy:
+    src: cupsd.conf
+    dest: /etc/cups/cupsd.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify:
+    - Restart CUPS
+  become: true
+  tags: cups,airprint

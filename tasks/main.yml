@@ -5,7 +5,7 @@
       - avahi-daemon
       - cups
       - cups-pdf
-      - python-cups
+      - python3-cups
     state: present
   become: true
   tags: apt,cups,airprint

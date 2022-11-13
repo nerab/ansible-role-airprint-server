@@ -2,7 +2,7 @@ galaxy_info:
   description: Airprint Server using CUPS
   author: Nicholas E. Rabenau
   license: MIT
-  min_ansible_version: 2.2
+  min_ansible_version: "2.2"
   platforms:
   - name: Debian
     versions:
